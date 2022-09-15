@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import HomeScreen from './pages/HomeScreen';
 
 function App() {
   return (
     <div className="app">
-      <h1>Netflix Clone</h1>
+      <HomeScreen />
     </div>
   );
 }
