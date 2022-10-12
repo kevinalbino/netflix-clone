@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import db, { collection, where, getDocs, query, doc, addDoc, onSnapshot } from '../firebase';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../features/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectUser, currSub } from '../features/userSlice';
 import { loadStripe } from '@stripe/stripe-js';
 import './PlansScreen.css';
 
 function PlansScreen() {
     const [products, setProducts] = useState([]);
-    const user = useSelector(selectUser);
     const [subscription, setSubscription] = useState(null);
+    const user = useSelector(selectUser);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const colRef = collection(db, "customers", user.uid, "subscriptions");
@@ -19,12 +20,13 @@ function PlansScreen() {
                 setSubscription({
                     role: subscription.data().role,
                     current_period_end: subscription.data().current_period_end.seconds,
-                    current_period_start: subscription.data().current_period_start.seconds
+                    current_period_start: subscription.data().current_period_start.seconds,
                 });
             });
+            dispatch(currSub({ role: subscription?.role.replace(/^./, str => str.toUpperCase()) }));
         }
         querySnapshots();
-    }, [user.uid]);
+    }, [user.uid, dispatch, subscription]);
 
     useEffect(() => {
         const q = query(collection(db, "products"), where("active", "==", true));
