@@ -1,11 +1,23 @@
-import React from 'react';
 import './HomeScreen.css';
 import Nav from '../components/Nav';
 import Banner from '../components/Banner';
 import requests from '../Requests';
 import Row from '../components/Row';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { selectSub } from '../features/userSlice';
+import { useEffect } from 'react';
 
 function HomeScreen() {
+    const sub = useSelector(selectSub);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (sub?.role === undefined) {
+            navigate("/profile");
+        }
+    });
+
     return (
         <div className="HomeScreen">
             <Nav />
