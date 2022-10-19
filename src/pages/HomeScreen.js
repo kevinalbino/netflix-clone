@@ -4,22 +4,14 @@ import Banner from '../components/Banner';
 import requests from '../Requests';
 import Row from '../components/Row';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { selectSub } from '../features/userSlice';
-import { useEffect } from 'react';
 
 function HomeScreen() {
     const sub = useSelector(selectSub);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (sub?.role === undefined) {
-            navigate("/profile");
-        }
-    });
 
     return (
-        <div className="HomeScreen">
+        sub?.role ? <div className="HomeScreen">
             <Nav />
             <Banner />
             <Row
@@ -34,7 +26,7 @@ function HomeScreen() {
             <Row title="Horror Movies" fetchURL={requests.fetchHorrorMovies} />
             <Row title="Romance Movies" fetchURL={requests.fetchRomanceMovies} />
             <Row title="Documentaries" fetchURL={requests.fetchDocumentaries} />
-        </div>
+        </div> : <Navigate to='/profile' />
     );
 }
 
