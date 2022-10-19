@@ -17,10 +17,13 @@ export const userSlice = createSlice({
     currSub: (state, action) => {
       state.sub = action.payload;
     },
+    removeSub: (state) => {
+      state.sub = null;
+    }
   },
 });
 
-export const { login, logout, currSub } = userSlice.actions;
+export const { login, logout, currSub, removeSub } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 export const selectSub = (state) => state.user.sub;
