@@ -3,10 +3,11 @@ import './App.css';
 import HomeScreen from './pages/HomeScreen';
 import LoginScreen from './pages/LoginScreen';
 import ProfileScreen from './pages/ProfileScreen';
+import PrivateRoutes from './components/PrivateRoutes';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { auth, onAuthStateChanged } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, logout, selectUser } from './features/userSlice';
+import { login, logout, selectUser, removeSub } from './features/userSlice';
 
 function App() {
   const user = useSelector(selectUser);
@@ -23,6 +24,7 @@ function App() {
         );
       } else {
         dispatch(logout());
+        dispatch(removeSub());
       }
     });
 
@@ -32,14 +34,12 @@ function App() {
   return (
     <div className="app">
       <Router>
-        {!user ? (
-          <LoginScreen />
-        ) : (
-          <Routes>
-            <Route exact path="/" element={<HomeScreen />} />
+        <Routes>
+          <Route exact path="/" element={!user ? <LoginScreen /> : <HomeScreen />} />
+          <Route element={<PrivateRoutes />}>
             <Route path="/profile" element={<ProfileScreen />} />
-          </Routes>
-        )}
+          </Route>
+        </Routes>
       </Router>
     </div>
   );
