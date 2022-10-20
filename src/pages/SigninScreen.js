@@ -29,7 +29,7 @@ function SigninScreen() {
                 <button type="submit" onClick={signIn}>Sign In</button>
                 <h4>
                     <span className="signupScreen__gray">New to Netflix? </span>
-                    <span className="signupScreen__link" onClick={() => navigate('/signup')}>Sign up now.</span>
+                    <span className="signupScreen__link" onClick={() => navigate('/signup', { state: { email: emailRef.current.value } })}>Sign up now.</span>
                 </h4>
             </form>
         </div>

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { auth, createUserWithEmailAndPassword } from '../firebase';
 import './SignupScreen.css';
 
@@ -7,6 +7,8 @@ function SignupScreen() {
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const navigate = useNavigate();
+    const location = useLocation();
+    const email = location.state?.email;
 
     const register = (e) => {
         e.preventDefault();
@@ -33,7 +35,7 @@ function SignupScreen() {
                 <form>
                     <h3>SIGN UP</h3>
                     <h1>Create a password to start your membership</h1>
-                    <input ref={emailRef} placeholder="Email" type="email" />
+                    <input ref={emailRef} placeholder="Email" type="email" defaultValue={!email ? "" : email} />
                     <input ref={passwordRef} placeholder="Password" type="password" />
                     <button type="submit" onClick={register}>Sign Up</button>
                     <h4>

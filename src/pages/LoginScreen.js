@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginScreen.css';
 import SigninScreen from './SigninScreen';
 
 function LoginScreen() {
     const [signIn, setSignIn] = useState(false);
+    const emailRef = useRef(null);
     const navigate = useNavigate();
 
     return (
@@ -28,8 +29,8 @@ function LoginScreen() {
                         <h3>Ready to watch? Enter your email to create or restart your membership.</h3>
                         <div className="loginScreen__input">
                             <form>
-                                <input type="email" placeholder="Email address" />
-                                <button onClick={() => navigate('/signup')}
+                                <input ref={emailRef} type="email" placeholder="Email address" />
+                                <button onClick={() => navigate('/signup', { state: { email: emailRef.current.value } })}
                                     className="loginScreen__getStarted">Get Started &gt;</button>
                             </form>
                         </div>
