@@ -1,7 +1,7 @@
 .loginScreen {
     position: relative;
     height: 100%;
-    background: url("https://assets.nflxext.com/ffe/siteui/vlv3/28b69a57-cadf-43d9-8a95-e5f2e11199de/c86afdf7-1b44-4911-80fd-f97d0130fcd8/US-en-20221010-popsignuptwoweeks-perspective_alpha_website_large.jpg") center no-repeat;
+    background: url("https://assets.nflxext.com/ffe/siteui/vlv3/79fe83d4-7ef6-4181-9439-46db72599559/be1d82ef-72c1-4a2a-8c16-5170169f9ef8/US-en-20221017-popsignuptwoweeks-perspective_alpha_website_large.jpg") center no-repeat;
     background-size: cover;
 }
 
@@ -60,7 +60,7 @@
     padding: 10px 20px;
     background-color: #e50914;
     color: #fff;
-    font-weight: 600;
+    font-weight: 400;
     border: none;
     cursor: pointer;
 }
