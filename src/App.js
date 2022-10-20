@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './App.css';
 import HomeScreen from './pages/HomeScreen';
 import LoginScreen from './pages/LoginScreen';
+import SignupScreen from './pages/SignupScreen';
 import ProfileScreen from './pages/ProfileScreen';
 import PrivateRoutes from './components/PrivateRoutes';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -36,6 +37,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={!user ? <LoginScreen /> : <HomeScreen />} />
+          <Route exact path="/signup" element={<SignupScreen />} />
           <Route element={<PrivateRoutes />}>
             <Route path="/profile" element={<ProfileScreen />} />
           </Route>
