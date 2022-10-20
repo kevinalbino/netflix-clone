@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LoginScreen.css';
-import SignupScreen from './SignupScreen';
+import SigninScreen from './SigninScreen';
 
 function LoginScreen() {
     const [signIn, setSignIn] = useState(false);
+    const navigate = useNavigate();
 
     return (
         <div className="loginScreen">
             <div className="loginScreen__background">
                 <img
                     className="loginScreen__logo"
-                    src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="" />
+                    src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt=""
+                    onClick={() => setSignIn(false)} />
                 <button onClick={() => setSignIn(true)}
                     className="loginScreen__button">Sign In</button>
                 <div className="loginScreen--gradient" />
             </div>
             <div className="loginScreen__body">
                 {signIn ? (
-                    <SignupScreen />
+                    <SigninScreen />
                 ) : (
                     <>
                         <h1>Unlimited movies, TV shows, and more.</h1>
@@ -26,7 +29,7 @@ function LoginScreen() {
                         <div className="loginScreen__input">
                             <form>
                                 <input type="email" placeholder="Email address" />
-                                <button onClick={() => setSignIn(true)}
+                                <button onClick={() => navigate('/signup')}
                                     className="loginScreen__getStarted">Get Started &gt;</button>
                             </form>
                         </div>
