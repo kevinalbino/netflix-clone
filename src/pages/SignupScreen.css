@@ -1,51 +1,81 @@
 .signupScreen {
-    position: fixed;
-    top: 20%;
-    left: 0;
-    right: 0;
-    max-width: 300px;
-    padding: 70px;
-    margin-left: auto;
-    margin-right: auto;
-    background: rgba(0, 0, 0, 0.75);
-}
-
-.signupScreen>form {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     display: grid;
     flex-direction: column;
+    align-items: start;
+    background-color: #fff;
+    overflow-y: auto;
 }
 
-.signupScreen>form>h1 {
+.signupHeader {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e6e6e6;
+    align-items: center;
+    padding: 20px;
+}
+
+.signupScreen__logo {
+    width: 150px;
+    cursor: pointer;
+}
+
+.signupHeader>.signinScreen__link {
+    font-weight: 700;
+}
+
+.signupScreen__body {
+    display: flex;
+    justify-content: center;
+}
+
+.signupScreen__body>form {
+    width: 440px;
+    display: grid;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.signupScreen__body>form>h1 {
     text-align: left;
     margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.signupScreen__body>form>h3 {
+    text-align: left;
+    font-size: 13px;
     font-weight: 400;
 }
 
-.signupScreen>form>h4 {
+.signupScreen__body>form>h4 {
     font-weight: 400;
     text-align: left;
     margin-bottom: 30px;
 }
 
-.signupScreen__gray {
+.signinScreen__gray {
     color: gray;
 }
 
-.signupScreen__link:hover {
+.signinScreen__link:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
-.signupScreen>form>input {
+.signupScreen__body>form>input {
     outline-width: 0;
     height: 40px;
     margin-bottom: 14px;
     border-radius: 5px;
-    border: none;
+    border: 1px solid #8c8c8c;
     padding: 5px 15px;
 }
 
-.signupScreen>form>button {
+.signupScreen__body>form>button {
     padding: 16px 20px;
     font-size: 1rem;
     color: #fff;

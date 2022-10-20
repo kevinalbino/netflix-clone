@@ -1,10 +1,12 @@
 import React, { useRef } from 'react';
-import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '../firebase';
+import { useNavigate } from 'react-router-dom';
+import { auth, createUserWithEmailAndPassword } from '../firebase';
 import './SignupScreen.css';
 
 function SignupScreen() {
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
+    const navigate = useNavigate();
 
     const register = (e) => {
         e.preventDefault();
@@ -13,35 +15,33 @@ function SignupScreen() {
             auth,
             emailRef.current.value,
             passwordRef.current.value
-        ).then((authUser) => {
-            console.log(authUser)
-        }).catch((error) => alert(error.message));
-    };
-
-    const signIn = (e) => {
-        e.preventDefault();
-
-        signInWithEmailAndPassword(
-            auth,
-            emailRef.current.value,
-            passwordRef.current.value
-        ).then((authUser) => {
-            console.log(authUser)
+        ).then(() => {
+            navigate('/');
         }).catch((error) => alert(error.message));
     };
 
     return (
         <div className="signupScreen">
-            <form>
-                <h1>Sign In</h1>
-                <input ref={emailRef} placeholder="Email" type="email" />
-                <input ref={passwordRef} placeholder="Password" type="password" />
-                <button type="submit" onClick={signIn}>Sign In</button>
-                <h4>
-                    <span className="signupScreen__gray">New to Netflix? </span>
-                    <span className="signupScreen__link" onClick={register}>Sign up now.</span>
-                </h4>
-            </form>
+            <div className="signupHeader">
+                <img
+                    className="signupScreen__logo"
+                    src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt=""
+                    onClick={() => navigate('/')} />
+                <span className="signinScreen__link" onClick={() => navigate('/')}>Sign In</span>
+            </div>
+            <div className="signupScreen__body">
+                <form>
+                    <h3>SIGN UP</h3>
+                    <h1>Create a password to start your membership</h1>
+                    <input ref={emailRef} placeholder="Email" type="email" />
+                    <input ref={passwordRef} placeholder="Password" type="password" />
+                    <button type="submit" onClick={register}>Sign Up</button>
+                    <h4>
+                        <span className="signinScreen__gray">Already have an account? </span>
+                        <span className="signinScreen__link" onClick={() => navigate('/')}>Sign in now.</span>
+                    </h4>
+                </form>
+            </div>
         </div>
     )
 }
